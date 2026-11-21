@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f1e7;
+  --color-paper-deep: #ede6d6;
+  --color-card: #fffdf8;
+  --color-ink: #1c2a21;
+  --color-ink-soft: #5c6b5f;
+  --color-leaf: #2e6b3e;
+  --color-leaf-deep: #1e4a2b;
+  --color-leaf-soft: #e2eee0;
+  --color-clay: #a9502b;
+  --color-clay-soft: #faf0e7;
+  --color-line: #dfd6c2;
+  --font-display: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The printed-card footer is hidden on screen and revealed in print. */
+.print-footer {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Print stylesheet                                                     */
+/* Goal: a clean black-on-white card that fits A5/A6, no ink waste.     */
+/* Everything except the schedule card is marked print:hidden in JSX.   */
+/* ------------------------------------------------------------------ */
+@media print {
+  @page {
+    /* Generous but compact margins so the card fits A6 as well as A5. */
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .print-card {
+    border: 2px solid #000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    padding: 7mm !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .print-card,
+  .print-card * {
+    color: #000 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    text-shadow: none !important;
+  }
+
+  .print-card h2 {
+    font-size: 15pt !important;
+    margin-top: 0 !important;
+  }
+
+  .print-card .print-hero {
+    font-size: 17pt !important;
+  }
+
+  .print-card .print-number {
+    font-size: 54pt !important;
+    line-height: 0.9 !important;
+  }
+
+  .print-card [role='note'] {
+    border-width: 1.5px !important;
+  }
+
+  .print-footer {
+    display: block !important;
+    border-top: 1px solid #000 !important;
+    margin-top: 5mm !important;
+    padding-top: 2mm !important;
+    font-size: 8pt !important;
+  }
+}
